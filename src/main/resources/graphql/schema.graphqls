@@ -1,0 +1,47 @@
+type Query {
+    getAllPersons: [Person]
+    getPersonByName(name: String!): Person
+    getPersonByEmail(email: String!): Person
+    getAllAddresses: [Address]
+    getPersonsByNamePattern(pattern: String!): [Person]
+    getAllPersonsSortedByName: [Person]
+    searchPersons(nomPrenom: String!, email: String!): [Person]
+
+}
+
+type Mutation {
+    addPerson(
+        nomPrenom: String!,
+        telephone: String!,
+        email: String!,
+        adresse: AddressInput!
+    ): Person
+
+    updatePerson(
+        email: String!,
+        nomPrenom: String,
+        telephone: String,
+        adresse: AddressInput
+    ): Person
+
+    deletePerson(email: String!): Boolean
+}
+
+input AddressInput {
+    rue: String
+    codePostalVille: String
+    complet: String
+}
+
+type Person {
+    nomPrenom: String
+    telephone: String
+    email: String
+    adresse: Address
+}
+
+type Address {
+    rue: String
+    codePostalVille: String
+    complet: String
+}
